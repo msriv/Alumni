@@ -1,0 +1,26 @@
+{
+    ".\/actions": [
+        "directory.php",
+        "assoc_projects.php",
+        "univ_projects.php",
+        "industry_offers.php",
+        "authentication.php",
+        "news.php",
+        "recognisedAlumni.php",
+        "events.php"
+    ],
+    ".\/config": [
+        "GET_config.php",
+        "POST_config.php",
+        "database.php"
+    ],
+    ".\/assets\/images": [],
+    ".\/assets": [
+        "functions.php"
+    ],
+    ".": [
+        "config.json",
+        "config.php",
+        "API_Workspace.code-workspace"
+    ]
+}
