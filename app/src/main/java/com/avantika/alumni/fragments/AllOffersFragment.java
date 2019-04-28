@@ -21,7 +21,7 @@ import com.avantika.alumni.server.ServerFetch;
 import com.avantika.alumni.support.OffersAdapter;
 import com.google.gson.Gson;
 
-import static com.avantika.alumni.parameters.Intents.POSTS_ACTION;
+import static com.avantika.alumni.parameters.Intents.ALL_INDUSTRY_ACTION;
 import static com.avantika.alumni.support.OffersAdapter.TAG;
 
 public class AllOffersFragment extends Fragment {
@@ -48,7 +48,7 @@ public class AllOffersFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        getActivity().registerReceiver(allOffersReciever, new IntentFilter(POSTS_ACTION));
+        getActivity().registerReceiver(allOffersReciever, new IntentFilter(ALL_INDUSTRY_ACTION));
     }
 
     @Override
@@ -62,7 +62,7 @@ public class AllOffersFragment extends Fragment {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             Log.d(TAG, "action: " + action);
-            if (action.equalsIgnoreCase(POSTS_ACTION)) {
+            if (action.equalsIgnoreCase(ALL_INDUSTRY_ACTION)) {
                 String offersJson = intent.getStringExtra("allOffers");
                 IndustryOffers[] offers =  new Gson().fromJson(offersJson, IndustryOffers[].class);
                 Log.d(TAG, "After Receiving" + offers[0].Domain_ID);
