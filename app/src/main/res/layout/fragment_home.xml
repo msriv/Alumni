@@ -4,7 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/post_card" android:id="@+id/withPhoto" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/postsRec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

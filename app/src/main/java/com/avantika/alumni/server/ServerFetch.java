@@ -8,6 +8,7 @@ import android.util.Log;
 import com.avantika.alumni.parameters.Authentication;
 import com.avantika.alumni.parameters.IndustryOffers;
 import com.avantika.alumni.parameters.News;
+import com.avantika.alumni.parameters.WallPosts;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -15,10 +16,12 @@ import java.net.HttpURLConnection;
 
 import retrofit2.Call;
 import retrofit2.Response;
+
 import static com.avantika.alumni.activities.MainActivity.TAG;
 import static com.avantika.alumni.parameters.Intents.ALL_INDUSTRY_ACTION;
 import static com.avantika.alumni.parameters.Intents.AUTHENTICATION_ACTION;
 import static com.avantika.alumni.parameters.Intents.NEWS_ACTION;
+import static com.avantika.alumni.parameters.Intents.POSTS_ACTION;
 import static com.avantika.alumni.parameters.Intents.RECOMMENDED_INDUSTRY_ACTION;
 
 public class ServerFetch extends IntentService {
@@ -45,10 +48,37 @@ public class ServerFetch extends IntentService {
                 Log.d(TAG, "Recommended Offers Call for "+ intent.getStringExtra("email"));
                 recommendedOffers(intent.getStringExtra("email"));
             }
+            break;
             case "allOffers":{
                 Log.d(TAG, "All Offers Call for");
                 allOffers();
             }
+            break;
+            case "posts": {
+                Log.d(TAG, "Getting all posts...");
+                getPosts();
+            }
+        }
+    }
+
+    private void getPosts() {
+        final Call<WallPosts[]> postsCall = ServiceClient.getRetroFit().getPosts();
+        try {
+            Response<WallPosts[]> response = postsCall.execute();
+            if (response.code() == HttpURLConnection.HTTP_OK) {
+                WallPosts[] posts = response.body();
+                Log.d(TAG, "Response: " + posts[0].toString());
+                Log.d(TAG, "Response: " + posts[0].postPhoto);
+                Log.d(TAG, "Response: " + posts[1].postPhoto);
+                Intent returningIntent = new Intent(POSTS_ACTION);
+                String postsJson = new Gson().toJson(posts);
+                returningIntent.putExtra("posts", postsJson);
+                sendBroadcast(returningIntent);
+            } else {
+                Log.e(TAG, "HTTP Error" + response.code() + " " + response.message());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

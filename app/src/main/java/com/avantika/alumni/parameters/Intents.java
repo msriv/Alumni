@@ -9,4 +9,5 @@ public class Intents {
     public static final String DIRECTORY_ACTION = "alumni.intent.directory";
     public static final String ALL_INDUSTRY_ACTION = "alumni.intent.all.industry";
     public static final String RECOMMENDED_INDUSTRY_ACTION = "alumni.intent.recommended.industry";
+    public static final String POSTS_ACTION = "alumni.intent.wall.posts";
 }

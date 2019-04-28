@@ -1,15 +1,8 @@
 package com.avantika.alumni.parameters;
 
-import java.util.Date;
-
-    public class Authentication {
-        public Message message;
-        public Profile profile;
-
-        public static class Message{
-            public boolean error;
-            public String message;
-        }
+public class Authentication {
+    public boolean error;
+    public Profile profile;
 
         public static class Profile{
             public Personal_Information personal_information;

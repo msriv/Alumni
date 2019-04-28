@@ -39,9 +39,9 @@ public interface EndPoints {
     @GET("Alumni/actions/recommendedIndustryOffers.php")
     Call<IndustryOffers[]> getRecommendedIndustryOffers(@Query("email") String email);
 
-    @GET("Alumni/actions/wallPosts.php")
-    Call<WallPosts> getPosts();
+    @GET("Alumni/actions/getWallPosts.php")
+    Call<WallPosts[]> getPosts();
 
-    @POST("Alumni/actions/wallPosts.php")
+    @POST("Alumni/actions/saveWallPosts.php")
     Call<WallPosts> savePosts(@Body WallPosts post);
 }
