@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Alumni</string>
+    <string name="title_activity_news">Activity_News</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="university_logo">University Logo</string>
+    <string name="alumni">alumni</string>
+    <string name="sign_in">Sign in</string>
+    <string name="project">Projects</string>
+    <string name="assoc_projects">Association Projects</string>
+    <string name="univ_projects">University Projects</string>
+    <string name="information">Information</string>
+    <string name="news">News</string>
+    <string name="events">Events</string>
+    <string name="directory">Directory</string>
+    <string name="industry_offers">Industry Offers</string>
+    <string name="my_profile">My Profile</string>
+    <string name="title_directory">Directory</string>
+    <string name="title_industryOffers">Industry Offers</string>
+    <string name="title_myProfile">Profile</string>
+    <string name="dummyPost">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</string>
+    <string name="news1">NewsImages</string>
+    <string name="postImage">Post Image</string>
+    <string name="profile_picture">Profile Picture</string>
+    <string name="option1">Change Profile Picture</string>
+    <string name="profileForm_Name">Name</string>
+    <string name="profileForm_email">Email</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

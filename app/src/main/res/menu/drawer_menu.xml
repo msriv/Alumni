@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/navigation_projects"
+        android:icon="@drawable/project_diagram"
+        android:title="@string/project" >
+        <menu>
+            <item android:id="@+id/assoc_projects"
+                android:title="@string/assoc_projects"/>
+            <item android:id="@+id/univ_projects"
+                android:title="@string/univ_projects"/>
+        </menu>
+    </item>
+
+    <item android:id="@+id/navigation_information"
+        android:icon="@drawable/newspaper"
+        android:title="@string/information" >
+        <menu>
+            <item android:id="@+id/news"
+                android:title="@string/news">
+            </item>
+            <item android:id="@+id/events"
+                android:title="@string/events">
+            </item>
+        </menu>
+    </item>
+</menu>
