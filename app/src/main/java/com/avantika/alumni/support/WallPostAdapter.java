@@ -39,7 +39,10 @@ public class WallPostAdapter extends RecyclerView.Adapter {
         postViewHolder.timePosted.setText(post.postedTime);
         postViewHolder.postContent.setText(post.Content);
         if (post.postPhoto != null) {
+            postViewHolder.contentPic.setVisibility(View.VISIBLE);
             Picasso.get().load(BaseURL.BASE_URL + post.postPhoto).into(postViewHolder.contentPic);
+        } else {
+            postViewHolder.contentPic.setVisibility(View.GONE);
         }
         Picasso.get().load(BaseURL.BASE_URL + post.Profile_Pic).transform(new CircleTransform()).into(postViewHolder.profilePic);
     }

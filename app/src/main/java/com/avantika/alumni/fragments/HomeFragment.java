@@ -1,5 +1,6 @@
 package com.avantika.alumni.fragments;
 
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +16,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.avantika.alumni.R;
 import com.avantika.alumni.parameters.WallPosts;
@@ -34,16 +37,40 @@ public class HomeFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_home, null);
 
-        Intent intent = new Intent(getActivity().getApplicationContext(), ServerFetch.class);
-        intent.putExtra("request", "posts");
-        getActivity().startService(intent);
+        getPostsFromServer();
 
         FloatingActionButton fab = rootView.findViewById(R.id.fab);
         fab.setOnClickListener(v -> {
-            Snackbar.make(v, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            /*Snackbar.make(v, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();*/
+            final Dialog dialog = new Dialog(v.getContext());
+            dialog.setContentView(R.layout.custom_dialog);
+            dialog.setTitle("Send Posts");
+            ImageView img = dialog.findViewById(R.id.uploadedImage);
+            img.setImageResource(R.drawable.project_diagram);
+
+            Button sendBtn = dialog.findViewById(R.id.sendBtn);
+            sendBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "New Post Made", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.show();
         });
         return rootView;
+    }
+
+    private void savePostsToServer(String content) {
+
+    }
+
+    private void getPostsFromServer() {
+        Intent intent = new Intent(getActivity().getApplicationContext(), ServerFetch.class);
+        intent.putExtra("request", "posts");
+        getActivity().startService(intent);
     }
 
     private void showAllPosts(WallPosts[] posts) {

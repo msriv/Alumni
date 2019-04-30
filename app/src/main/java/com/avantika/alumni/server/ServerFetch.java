@@ -146,6 +146,7 @@ public class ServerFetch extends IntentService {
     public void authenticate(String email){
         final Call<Authentication> authCall = ServiceClient.getRetroFit().getValidation(email);
         try {
+            Log.d(TAG, "==>Auth Service is called");
             Response<Authentication> response = authCall.execute();
             if(response.code() == HttpURLConnection.HTTP_OK){
                 Authentication paramAuth = response.body();

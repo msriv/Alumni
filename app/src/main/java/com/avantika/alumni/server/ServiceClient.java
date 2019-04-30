@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceClient {
     public static EndPoints getRetroFit(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.43.93/")
+                .baseUrl(BaseURL.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

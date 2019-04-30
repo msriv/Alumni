@@ -14,19 +14,13 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".activities.HotLinksActivity"
-            android:label="@string/title_activity_main2">
-
+            android:label="@string/title_activity_main2"></activity>
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".activities.MainActivity">
-
-        </activity>
-
         <service
             android:name=".server.ServerFetch"
             android:enabled="true" />
