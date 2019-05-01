@@ -67,9 +67,6 @@ public class ServerFetch extends IntentService {
             Response<WallPosts[]> response = postsCall.execute();
             if (response.code() == HttpURLConnection.HTTP_OK) {
                 WallPosts[] posts = response.body();
-                Log.d(TAG, "Response: " + posts[0].toString());
-                Log.d(TAG, "Response: " + posts[0].postPhoto);
-                Log.d(TAG, "Response: " + posts[1].postPhoto);
                 Intent returningIntent = new Intent(POSTS_ACTION);
                 String postsJson = new Gson().toJson(posts);
                 returningIntent.putExtra("posts", postsJson);
@@ -88,7 +85,6 @@ public class ServerFetch extends IntentService {
             Response<IndustryOffers[]> response = allOffersCall.execute();
             if(response.code() == HttpURLConnection.HTTP_OK){
                 IndustryOffers[] offersBody = response.body();
-                Log.d(TAG, "Response: " + offersBody[0].toString());
                 Intent returningIntent = new Intent(ALL_INDUSTRY_ACTION);
                 String offersJson = new Gson().toJson(offersBody);
                 returningIntent.putExtra("allOffers",offersJson);
@@ -109,7 +105,6 @@ public class ServerFetch extends IntentService {
             Response<IndustryOffers[]> response = recommendedOffersCall.execute();
             if(response.code() == HttpURLConnection.HTTP_OK){
                 IndustryOffers[] offersBody = response.body();
-                Log.d(TAG, "Response: " + offersBody[0].toString());
                 Intent returningIntent = new Intent(RECOMMENDED_INDUSTRY_ACTION);
                 String offersJson = new Gson().toJson(offersBody);
                 returningIntent.putExtra("recommendedOffers",offersJson);

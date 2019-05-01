@@ -38,10 +38,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <ImageView
+                android:id="@+id/profile_ppic"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:src="@drawable/demoppic"
+                tools:src="@drawable/demoppic"
                 android:layout_margin="20dp"
                 android:contentDescription="@string/profile_picture"/>
 
@@ -65,7 +66,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="15dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -74,24 +78,29 @@
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/profileForm_Name"
+                    android:textColor="#000"
+                    android:layout_weight="3"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
+                <TextView
+                    android:id="@+id/profile_displayName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    tools:text="Mihir Srivastava" />
+                    android:layout_weight="2"
+                    tools:text="Mihir Srivastava"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/roboto_regular" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="15dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -100,21 +109,99 @@
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/profileForm_email"
+                    android:textColor="#000"
+                    android:layout_weight="3"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
+                <TextView
+                    android:id="@+id/profile_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
+                    android:layout_weight="2"
                     tools:text="mihir.srivastava@avantika.edu.in"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/roboto_regular"
                     />
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Education Information"
+                    android:layout_margin="20dp"
+                    android:layout_weight="2" />
+
+                <ImageButton
+                    android:id="@+id/addEducationInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="8"
+                    android:padding="5dp"
+                    android:background="@null"
+                    android:src="@drawable/ic_plus_red" />
+
+            </LinearLayout>
+
+            <com.avantika.alumni.support.NonScrollListView
+                android:id="@+id/educationListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:scrollbars="none"
+                android:padding="5dp"
+                android:dividerHeight="2dp">
+
+            </com.avantika.alumni.support.NonScrollListView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Experience Information"
+                    android:layout_margin="20dp"
+                    android:layout_weight="2" />
+
+                <ImageButton
+                    android:id="@+id/addExperienceInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="8"
+                    android:padding="5dp"
+                    android:background="@null"
+                    android:src="@drawable/ic_plus_red" />
+
+            </LinearLayout>
+
+
+            <com.avantika.alumni.support.NonScrollListView
+                android:id="@+id/experienceListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null"
+                android:scrollbars="none"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:padding="5dp"
+                android:dividerHeight="2dp">
+
+            </com.avantika.alumni.support.NonScrollListView>
 
         </LinearLayout>
 

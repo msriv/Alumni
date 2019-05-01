@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.gson.Gson;
 
 import static com.avantika.alumni.parameters.Intents.AUTHENTICATION_ACTION;
+import static com.avantika.alumni.parameters.SharedPrefFiles.STORAGE_FILE;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,14 +39,17 @@ public class MainActivity extends AppCompatActivity {
     Button btn_Login;
     ProgressBar progressBar;
     GoogleSignInClient mGoogleSignInClient;
-
     public static final String TAG = MainActivity.class.getSimpleName();
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        sharedPreferences = getSharedPreferences(STORAGE_FILE, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         startGoogleSignIn();
 
     }
@@ -140,6 +145,12 @@ public class MainActivity extends AppCompatActivity {
             if (action.equalsIgnoreCase(AUTHENTICATION_ACTION)) {
                 String authJson = intent.getStringExtra("profile");
                 Authentication profile = new Gson().fromJson(authJson, Authentication.class);
+
+                // Storing profile data in file
+                editor.putString("email", profile.profile.personal_information.Email_ID);
+                editor.putString("profile", new Gson().toJson(profile.profile));
+                editor.commit();
+                //Toast.makeText(context, "Saved in File "+profile.profile.personal_information.Email_ID , Toast.LENGTH_SHORT).show();
                 if (profile.error) {
                     Logout();
                 } else {
@@ -154,6 +165,9 @@ public class MainActivity extends AppCompatActivity {
         if (!profile.error) {
             //Toast.makeText(this, "Success" + profile.profile.personal_information.Email_ID, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, HotLinksActivity.class);
+            editor.putString("email", profile.profile.personal_information.Email_ID);
+            editor.putString("profile", new Gson().toJson(profile.profile));
+            editor.commit();
             this.finish();
             startActivity(intent);
         } else {

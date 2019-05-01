@@ -1,9 +1,34 @@
-<vector android:height="11dp" android:viewportHeight="11.233951"
-    android:viewportWidth="38.74256" android:width="39dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <group>
-        <clip-path android:pathData="M-8.3155,-8.9878h47.058v26.8363h-47.058z M 0,0"/>
-        <path android:fillAlpha="0.84736842" android:fillColor="#ffffff"
-            android:pathData="M4.1051,0L56.8134,0A4.1051,4.1051 0,0 1,60.9185 4.1051L60.9185,7.1289A4.1051,4.1051 0,0 1,56.8134 11.2339L4.1051,11.2339A4.1051,4.1051 0,0 1,0 7.1289L0,4.1051A4.1051,4.1051 0,0 1,4.1051 0z"
-            android:strokeAlpha="1" android:strokeColor="#00000000" android:strokeWidth="0.31998357"/>
-    </group>
-</vector>
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/colorPrimary">
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="#FF000000" />
+            <corners
+                android:topLeftRadius="100dp"
+                android:bottomLeftRadius="100dp" />
+        </shape>
+    </item>
+
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" />
+            <corners
+                android:topLeftRadius="100dp"
+                android:bottomLeftRadius="100dp" />
+
+        </shape>
+    </item>
+</ripple>
+
+
+    <!--<ripple
+    android:color="@color/colorPrimaryDark">
+
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/colorPrimary"/>
+            <corners android:radius="@dimen/button_radius_large" />
+        </shape>
+    </item>
+    </ripple>-->

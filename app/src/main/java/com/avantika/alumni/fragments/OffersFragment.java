@@ -23,10 +23,6 @@ public class OffersFragment extends Fragment {
         // Set Tabs inside Toolbar
         TabLayout tabs = (TabLayout) rootView.findViewById(R.id.result_tabs);
         tabs.setupWithViewPager(viewPager);
-
-
-
-
         return rootView;
     }
 

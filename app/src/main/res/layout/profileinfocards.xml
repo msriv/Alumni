@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:weightSum="10"
+    android:background="@drawable/background_profileinfocards"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/profile_card_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Lorem IpsumLorem Ipsum"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/profile_card_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Lorem IpsumLorem Ipsum"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="13sp"
+            android:textColor="#00000f"
+            android:fontFamily="@font/robotocondensed_regular" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/editButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_margin="20dp"
+        android:layout_weight="8"
+        android:src="@drawable/ic_pencil_alt" />
+
+
+</LinearLayout>

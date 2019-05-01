@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,18 +23,23 @@ import com.avantika.alumni.support.OffersAdapter;
 import com.google.gson.Gson;
 
 import static com.avantika.alumni.parameters.Intents.RECOMMENDED_INDUSTRY_ACTION;
+import static com.avantika.alumni.parameters.SharedPrefFiles.STORAGE_FILE;
 import static com.avantika.alumni.support.OffersAdapter.TAG;
 
 public class RecommendedOffersFragment extends Fragment {
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.recommended_offers_fragment, null);
-// Intent going to background service: ServerFetch.class
-        Intent intent = new Intent(getActivity().getApplicationContext(), ServerFetch.class);
+        // Intent going to background service: ServerFetch.class
+        Intent intent = new Intent(rootView.getContext(), ServerFetch.class);
         // Data sent with intent
-        intent.putExtra("email", "mihir.srivastava@avantika.edu.in");
+        SharedPreferences pref = getActivity().getSharedPreferences(STORAGE_FILE, Context.MODE_PRIVATE);
+        String email = pref.getString("email", "");
+
+        intent.putExtra("email", email);
         intent.putExtra("request", "recommendedOffers");
         // Starting service using thisv
         getActivity().startService(intent);

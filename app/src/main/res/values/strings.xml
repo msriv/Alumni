@@ -27,7 +27,8 @@
     <string name="option1">Change Profile Picture</string>
     <string name="profileForm_Name">Name</string>
     <string name="profileForm_email">Email</string>
-
+    <string name="profile_duration" quantity="other">For %d Months</string>
+    <string name="displayName" quantity="other">%s %s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

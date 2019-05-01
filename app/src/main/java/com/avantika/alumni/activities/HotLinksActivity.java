@@ -17,6 +17,7 @@ import com.avantika.alumni.fragments.ProfileFragment;
 
 public class HotLinksActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,7 @@ public class HotLinksActivity extends AppCompatActivity implements BottomNavigat
             Toast.makeText(this, "Press Back again to Exit.",
                     Toast.LENGTH_SHORT).show();
             exit = true;
+
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

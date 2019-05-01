@@ -39,7 +39,6 @@
         android:background="@drawable/signinbutton"
         android:drawableStart="@drawable/google"
         android:drawablePadding="-40dp"
-        android:foreground="?attr/selectableItemBackground"
         android:paddingStart="40dp"
         android:paddingEnd="0dp"
         android:text="@string/sign_in"
