@@ -33,13 +33,4 @@ public class OffersFragment extends Fragment {
         viewPager.setAdapter(adapter);
     }
 
-
-
-
-
-
-
-
-
-
 }

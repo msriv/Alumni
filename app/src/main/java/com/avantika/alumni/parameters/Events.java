@@ -1,11 +1,19 @@
 package com.avantika.alumni.parameters;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity
 public class Events {
-        public EventsItem[] events;
-        public static class EventsItem {
-                public String Event_ID;
-                public String Title;
-                public String Description;
-                public String Timestamp;
-        }
+
+    @NonNull
+    @PrimaryKey
+    public String Event_ID;
+
+    public String Title;
+    public String Date_Time;
+    public String Description;
+    public String Author;
+    public String Thumbnail;
 }

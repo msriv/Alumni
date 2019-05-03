@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 import com.avantika.alumni.R;
 import com.avantika.alumni.parameters.WallPosts;
-import com.avantika.alumni.server.ServerFetch;
+import com.avantika.alumni.server.ServerFunctions;
 import com.avantika.alumni.support.WallPostAdapter;
 import com.google.gson.Gson;
 
@@ -31,6 +31,7 @@ import static com.avantika.alumni.support.OffersAdapter.TAG;
 
 public class HomeFragment extends Fragment {
 
+    int parentWidth;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,14 +69,14 @@ public class HomeFragment extends Fragment {
     }
 
     private void getPostsFromServer() {
-        Intent intent = new Intent(getActivity().getApplicationContext(), ServerFetch.class);
+        Intent intent = new Intent(getActivity().getApplicationContext(), ServerFunctions.class);
         intent.putExtra("request", "posts");
         getActivity().startService(intent);
     }
 
     private void showAllPosts(WallPosts[] posts) {
         RecyclerView postsRecView = getActivity().findViewById(R.id.postsRec);
-        WallPostAdapter wallPostAdapter = new WallPostAdapter(posts);
+        WallPostAdapter wallPostAdapter = new WallPostAdapter(posts, parentWidth);
         postsRecView.setAdapter(wallPostAdapter);
         postsRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }

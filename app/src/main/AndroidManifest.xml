@@ -12,17 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activities.MenuActivity"></activity>
+        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.TopToolbar" />
         <activity
             android:name=".activities.HotLinksActivity"
-            android:label="@string/title_activity_main2"></activity>
+            android:label="@string/title_activity_main2" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
-            android:name=".server.ServerFetch"
+            android:name=".server.ServerFunctions"
+            android:enabled="true" />
+        <service
+            android:name=".database.DatabaseFunctions"
             android:enabled="true" />
     </application>
 

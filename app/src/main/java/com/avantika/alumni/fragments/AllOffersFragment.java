@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 
 import com.avantika.alumni.R;
 import com.avantika.alumni.parameters.IndustryOffers;
-import com.avantika.alumni.server.ServerFetch;
+import com.avantika.alumni.server.ServerFunctions;
 import com.avantika.alumni.support.OffersAdapter;
 import com.google.gson.Gson;
 
@@ -31,7 +31,7 @@ public class AllOffersFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.all_offers_fragment, null);
 
-        Intent intent = new Intent(getActivity().getApplicationContext(), ServerFetch.class);
+        Intent intent = new Intent(getActivity().getApplicationContext(), ServerFunctions.class);
         intent.putExtra("request", "allOffers");
         getActivity().startService(intent);
 

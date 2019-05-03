@@ -2,6 +2,7 @@ package com.avantika.alumni.support;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +17,13 @@ import com.squareup.picasso.Picasso;
 public class WallPostAdapter extends RecyclerView.Adapter {
 
     WallPosts[] posts;
+    int parentWidth;
 
-    public WallPostAdapter(WallPosts[] list) {
+    public static final String TAG = "WallPostAdapter";
+
+    public WallPostAdapter(WallPosts[] list, int parentWidth) {
         this.posts = list;
+        this.parentWidth = parentWidth;
     }
 
     @NonNull
@@ -38,9 +43,14 @@ public class WallPostAdapter extends RecyclerView.Adapter {
         postViewHolder.displayName.setText(post.Name);
         postViewHolder.timePosted.setText(post.postedTime);
         postViewHolder.postContent.setText(post.Content);
+        Log.d(TAG, "Profile Photo: " + BaseURL.BASE_URL + post.Profile_Pic);
         if (post.postPhoto != null) {
             postViewHolder.contentPic.setVisibility(View.VISIBLE);
-            Picasso.get().load(BaseURL.BASE_URL + post.postPhoto).into(postViewHolder.contentPic);
+            Picasso.get()
+                    .load(BaseURL.BASE_URL + post.postPhoto)
+                    .centerCrop()
+                    .resize(340, 200)
+                    .into(postViewHolder.contentPic);
         } else {
             postViewHolder.contentPic.setVisibility(View.GONE);
         }

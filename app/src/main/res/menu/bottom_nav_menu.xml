@@ -4,17 +4,22 @@
         android:icon="@drawable/ic_home"
         android:title="@string/title_home"/>
 
+    <item
+        android:id="@+id/navigation_projects"
+        android:icon="@drawable/project_diagram"
+        android:title="@string/project"></item>
+
     <item android:id="@+id/navigation_directory"
         android:icon="@drawable/users"
         android:title="@string/title_directory"/>
 
+    <item
+        android:id="@+id/navigation_information"
+        android:icon="@drawable/newspaper"
+        android:title="@string/information"></item>
+
     <item android:id="@+id/navigation_offers"
         android:icon="@drawable/briefcase"
         android:title="@string/title_industryOffers"/>
-
-    <item android:id="@+id/navigation_profile"
-        android:icon="@drawable/user_circle"
-        android:title="@string/title_myProfile"/>
-
 
 </menu>

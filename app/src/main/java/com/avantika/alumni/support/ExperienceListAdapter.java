@@ -3,11 +3,11 @@ package com.avantika.alumni.support;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.avantika.alumni.R;
@@ -51,7 +51,7 @@ public class ExperienceListAdapter extends ArrayAdapter<Authentication.Profile.E
             startYear = YearFormat.format(startd);
             endMonth = MonthFormat.format(endd);
             endYear = YearFormat.format(endd);
-            Log.d(TAG, "Month: " + startMonth);
+            //  Log.d(TAG, "Month: " + startMonth);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -64,6 +64,11 @@ public class ExperienceListAdapter extends ArrayAdapter<Authentication.Profile.E
 
         TextView textViewExperienceTitle = convertView.findViewById(R.id.profile_card_heading);
         TextView textViewExperienceDuration = convertView.findViewById(R.id.profile_card_duration);
+
+        ImageButton updateButton = convertView.findViewById(R.id.editButton);
+
+        updateButton.setTag(getItem(position).Job_Title);
+
 
         textViewExperienceTitle.setText(experienceTitle);
 

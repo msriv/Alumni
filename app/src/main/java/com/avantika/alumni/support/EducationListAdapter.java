@@ -3,11 +3,11 @@ package com.avantika.alumni.support;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.avantika.alumni.R;
@@ -51,14 +51,14 @@ public class EducationListAdapter extends ArrayAdapter<Authentication.Profile.Ed
             startYear = YearFormat.format(startd);
             endMonth = MonthFormat.format(endd);
             endYear = YearFormat.format(endd);
-            Log.d(TAG, "Month: " + startMonth);
+            // Log.d(TAG, "Month: " + startMonth);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
 
         String duration = startMonth + ", " + startYear + " to " + endMonth + ", " + endYear;
-        Log.d(TAG, "Duration" + duration);
+        //Log.d(TAG, "Duration" + duration);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
@@ -67,8 +67,9 @@ public class EducationListAdapter extends ArrayAdapter<Authentication.Profile.Ed
         TextView textViewEducationDuration = convertView.findViewById(R.id.profile_card_duration);
 
         textViewEducationTitle.setText(educationTitle);
-
         textViewEducationDuration.setText(duration);
+
+        ImageButton updateBtn = convertView.findViewById(R.id.editButton);
         return convertView;
     }
 }

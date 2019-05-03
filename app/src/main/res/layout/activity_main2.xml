@@ -7,20 +7,24 @@
     android:layout_height="match_parent"
     tools:context=".activities.HotLinksActivity">
 
+    <include
+        layout="@layout/activity_top_toolbar"
+        android:id="@+id/topToolbar" />
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_marginBottom="56dp"
+        android:layout_marginTop="56dp"
         android:text="@string/title_home"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topToolbar"
         android:layout_height="match_parent" />
 
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"
-        app:labelVisibilityMode="unlabeled"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
@@ -28,6 +32,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:itemIconSize="20dp"
         app:menu="@menu/bottom_nav_menu" />
 
 </android.support.constraint.ConstraintLayout>

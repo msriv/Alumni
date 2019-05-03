@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.avantika.alumni.R;
 import com.avantika.alumni.parameters.Authentication;
-import com.avantika.alumni.server.ServerFetch;
+import com.avantika.alumni.server.ServerFunctions;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -70,9 +70,7 @@ public class MainActivity extends AppCompatActivity {
         btn_Login.setOnClickListener(v -> SignInGoogle());
 
         if (mAuth.getCurrentUser() != null) {
-            Intent intent = new Intent(this, HotLinksActivity.class);
-            this.finish();
-            startActivity(intent);
+            serverAuthentication(mAuth.getCurrentUser());
         }
     }
 
@@ -119,8 +117,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void serverAuthentication(FirebaseUser user) {
-        Intent intent = new Intent(this, ServerFetch.class);
+    private void serverAuthentication(FirebaseUser user) {
+        Intent intent = new Intent(this, ServerFunctions.class);
         intent.putExtra("email", user.getEmail());
         intent.putExtra("request", "auth");
         startService(intent);
@@ -145,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             if (action.equalsIgnoreCase(AUTHENTICATION_ACTION)) {
                 String authJson = intent.getStringExtra("profile");
                 Authentication profile = new Gson().fromJson(authJson, Authentication.class);
-
+                Log.d(TAG, "Education: " + profile.profile.education.toString());
                 // Storing profile data in file
                 editor.putString("email", profile.profile.personal_information.Email_ID);
                 editor.putString("profile", new Gson().toJson(profile.profile));
@@ -156,6 +154,8 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     updateUI(profile);
                 }
+            } else {
+                Toast.makeText(context, "There is some technical error. Please try again later,", Toast.LENGTH_SHORT).show();
             }
         }
     };

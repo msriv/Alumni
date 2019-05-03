@@ -24,6 +24,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             android:textSize="16sp"
+            android:textStyle="bold"
             android:fontFamily="@font/roboto_bold"
             android:textColor="#000" />
 
@@ -36,7 +37,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginBottom="5dp"
             android:textSize="13sp"
-            android:textColor="#00000f"
+            android:textColor="#969696"
             android:fontFamily="@font/robotocondensed_regular" />
     </LinearLayout>
 

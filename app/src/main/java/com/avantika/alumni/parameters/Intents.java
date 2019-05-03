@@ -8,6 +8,8 @@ public class Intents {
     public static final String UNIV_PROJ_ACTION = "alumni.intent.univ.projects";
     public static final String DIRECTORY_ACTION = "alumni.intent.directory";
     public static final String ALL_INDUSTRY_ACTION = "alumni.intent.all.industry";
+    public static final String DOMAIN_LIST_ACTION = "alumni.intent.domains.list";
     public static final String RECOMMENDED_INDUSTRY_ACTION = "alumni.intent.recommended.industry";
     public static final String POSTS_ACTION = "alumni.intent.wall.posts";
+    public static final String ADD_QUALIFICATION_ACTION = "alumni.intent.add.qualification";
 }

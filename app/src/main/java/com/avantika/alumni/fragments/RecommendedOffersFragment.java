@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 
 import com.avantika.alumni.R;
 import com.avantika.alumni.parameters.IndustryOffers;
-import com.avantika.alumni.server.ServerFetch;
+import com.avantika.alumni.server.ServerFunctions;
 import com.avantika.alumni.support.OffersAdapter;
 import com.google.gson.Gson;
 
@@ -33,8 +33,8 @@ public class RecommendedOffersFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.recommended_offers_fragment, null);
-        // Intent going to background service: ServerFetch.class
-        Intent intent = new Intent(rootView.getContext(), ServerFetch.class);
+        // Intent going to background service: ServerFunctions.class
+        Intent intent = new Intent(rootView.getContext(), ServerFunctions.class);
         // Data sent with intent
         SharedPreferences pref = getActivity().getSharedPreferences(STORAGE_FILE, Context.MODE_PRIVATE);
         String email = pref.getString("email", "");
