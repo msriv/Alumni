@@ -36,11 +36,6 @@ public class HotLinksActivity extends AppCompatActivity implements BottomNavigat
         setSupportActionBar(topToolbar);
 
         labelActionBar = findViewById(R.id.toolbarTitle);
-        ImageButton menuBtn = findViewById(R.id.menuButton);
-        menuBtn.setOnClickListener(v -> {
-            Intent menuIntent = new Intent(this, MenuActivity.class);
-            startActivity(menuIntent);
-        });
 
         ImageButton profileBtn = findViewById(R.id.profileIcon);
         profileBtn.setOnClickListener(v -> {
@@ -103,6 +98,7 @@ public class HotLinksActivity extends AppCompatActivity implements BottomNavigat
 
             case R.id.navigation_directory:
                 labelActionBar.setText("Directory");
+
                 fragment = new DirectoryFragment();
                 break;
 
@@ -112,7 +108,7 @@ public class HotLinksActivity extends AppCompatActivity implements BottomNavigat
                 break;
 
             case R.id.navigation_projects:
-                labelActionBar.setText("Assoc_Projects");
+                labelActionBar.setText("Projects");
                 fragment = new ProjectsFragment();
                 break;
 

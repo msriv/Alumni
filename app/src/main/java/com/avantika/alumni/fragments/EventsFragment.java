@@ -44,7 +44,9 @@ public class EventsFragment extends Fragment {
         InformationAdapter informationAdapter = new InformationAdapter(events);
         eventsRecView.setAdapter(informationAdapter);
         eventsRecView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
     }
+
 
     @Override
     public void onResume() {

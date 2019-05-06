@@ -12,6 +12,7 @@ import com.avantika.alumni.database.AlumniDatabase;
 import com.avantika.alumni.database.DatabaseFunctions;
 import com.avantika.alumni.parameters.Assoc_Projects;
 import com.avantika.alumni.parameters.Authentication;
+import com.avantika.alumni.parameters.Directory;
 import com.avantika.alumni.parameters.Events;
 import com.avantika.alumni.parameters.IndustryOffers;
 import com.avantika.alumni.parameters.Industry_Domains;
@@ -23,9 +24,14 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -34,6 +40,7 @@ import static com.avantika.alumni.parameters.Intents.ADD_QUALIFICATION_ACTION;
 import static com.avantika.alumni.parameters.Intents.ALL_INDUSTRY_ACTION;
 import static com.avantika.alumni.parameters.Intents.ASSOC_PROJ_ACTION;
 import static com.avantika.alumni.parameters.Intents.AUTHENTICATION_ACTION;
+import static com.avantika.alumni.parameters.Intents.DIRECTORY_ACTION;
 import static com.avantika.alumni.parameters.Intents.EVENTS_ACTION;
 import static com.avantika.alumni.parameters.Intents.NEWS_ACTION;
 import static com.avantika.alumni.parameters.Intents.POSTS_ACTION;
@@ -112,6 +119,65 @@ public class ServerFunctions extends IntentService {
                 addQualification(title, startDate, endDate, domainName);
             }
             break;
+            case "directory": {
+                Log.d(TAG, "Fetching Directory");
+                getDirectory();
+            }
+            break;
+            case "savePost": {
+                Log.d(TAG, "Saving Posts");
+                File imageFile = (File) intent.getExtras().get("imageFile");
+                String content = intent.getStringExtra("content");
+                String email = intent.getStringExtra("email");
+                savePost(imageFile, content, email);
+            }
+        }
+    }
+
+    private void savePost(File imageFile, String content, String email) {
+        RequestBody imageFileRequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), imageFile);
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("fileToUpload", imageFile.getName(), imageFileRequestBody);
+
+        RequestBody contentbody = RequestBody.create(MediaType.parse("multipart/form-data"), content);
+        RequestBody emailbody = RequestBody.create(MediaType.parse("multipart/form-data"), email);
+        RequestBody submitbody = RequestBody.create(MediaType.parse("multipart/form-data"), "Upload Image");
+
+        Log.d(TAG, "==> savePost request");
+        Log.d(TAG, "Content" + content);
+        Log.d(TAG, "Email: " + email);
+        Call<ResponseBody> wallPostCall = ServiceClient.getRetroFit().saveWallPost(body, contentbody, submitbody, emailbody);
+        try {
+            Response<ResponseBody> response = wallPostCall.execute();
+            if (response.code() == HttpURLConnection.HTTP_OK) {
+                Log.d("Image Upload", response.body().toString());
+                Log.d("Image Upload", "Image Uploaded Successfully");
+            } else {
+                Log.d("Image Upload", "Image Not Uploaded");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getDirectory() {
+        final Call<Directory[]> directoryCall = ServiceClient.getRetroFit().getDirectory();
+        try {
+            Response<Directory[]> response = directoryCall.execute();
+            if (response.code() == HttpURLConnection.HTTP_OK) {
+                Directory[] directoryBody = response.body();
+                db.directoryDao().deleteAllUsers();
+                db.directoryDao().insertAll(directoryBody);
+                Intent returningIntent = new Intent(DIRECTORY_ACTION);
+                String directoryJson = new Gson().toJson(directoryBody);
+                returningIntent.putExtra("directory", directoryJson);
+                Log.d(TAG, "Directory Call 1");
+                sendBroadcast(returningIntent);
+            } else {
+                Log.e(TAG, "HTTP Error" + response.code() + " " + response.message());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

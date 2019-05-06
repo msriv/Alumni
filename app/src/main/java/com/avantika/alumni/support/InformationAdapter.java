@@ -1,5 +1,7 @@
 package com.avantika.alumni.support;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avantika.alumni.R;
+import com.avantika.alumni.activities.DataActivity;
 import com.avantika.alumni.parameters.Events;
 import com.avantika.alumni.parameters.News;
 import com.avantika.alumni.server.BaseURL;
@@ -19,6 +22,8 @@ import com.squareup.picasso.Picasso;
 
 public class InformationAdapter extends RecyclerView.Adapter {
     public static final String TAG = InformationAdapter.class.getSimpleName();
+
+    Context mContext;
 
     Object[] list;
     public static final int ITEM_TYPE_NEWS = 0;
@@ -71,7 +76,10 @@ public class InformationAdapter extends RecyclerView.Adapter {
         viewHolder.cardTimestamp.setText(news.Date_Time);
         viewHolder.card.setTag(news.News_ID);
         viewHolder.card.setOnClickListener(v -> {
-            Toast.makeText(v.getContext(), v.getTag().toString(), Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(v.getContext(), DataActivity.class);
+            intent.putExtra("dataRequest", "news");
+            intent.putExtra("id", v.getTag().toString());
+            v.getContext().startActivity(intent);
         });
     }
 
@@ -117,6 +125,7 @@ public class InformationAdapter extends RecyclerView.Adapter {
 
         public NewsViewHolder(View newsLayout) {
             super(newsLayout);
+            mContext = newsLayout.getContext();
             heading = newsLayout.findViewById(R.id.heading);
             cardImage = newsLayout.findViewById(R.id.cardImage);
             author = newsLayout.findViewById(R.id.author);

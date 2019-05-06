@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/closeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_gravity="end"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_times" />
+
+    <TextView
+        android:id="@+id/addPostHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="What's on your mind?"
+        android:textSize="15sp"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="#000" />
 
     <EditText
         android:id="@+id/editPostContent"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="10dp"
-        android:padding="5dp"
+        tools:text="Hello"
+        android:padding="10dp"
         android:background="@drawable/customtextarea"
         android:ems="10"
         android:gravity="start|bottom"
@@ -21,25 +44,36 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="5dp"
+        android:visibility="gone"
         android:layout_marginEnd="20dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="end">
 
-        <Button
+        <ImageButton
             android:id="@+id/uploadBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Upload" />
 
-        <Button
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_image"
+            android:background="@null" />
+
+        <ImageButton
             android:id="@+id/sendBtn"
             android:layout_width="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="10dp"
             android:layout_height="wrap_content"
-            android:text="Send" />
+            android:src="@drawable/ic_share_square"
+            android:background="@null" />
 
     </LinearLayout>
 

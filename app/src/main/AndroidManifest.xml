@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.avantika.alumni">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.MenuActivity"></activity>
+        <activity android:name=".activities.DataActivity"></activity>
+        <activity android:name=".activities.MenuActivity" />
         <activity android:name=".activities.ProfileActivity" />
         <activity android:name=".activities.TopToolbar" />
         <activity
@@ -32,6 +36,10 @@
         <service
             android:name=".database.DatabaseFunctions"
             android:enabled="true" />
+
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
     </application>
 
 </manifest>

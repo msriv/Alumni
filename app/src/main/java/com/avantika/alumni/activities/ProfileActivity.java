@@ -31,6 +31,10 @@ import com.avantika.alumni.support.CircleTransform;
 import com.avantika.alumni.support.EducationListAdapter;
 import com.avantika.alumni.support.ExperienceListAdapter;
 import com.avantika.alumni.support.NonScrollListView;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -53,6 +57,8 @@ public class ProfileActivity extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener startDate, endDate;
     EditText editStartDate, editEndDate;
     Spinner domainSpinner;
+    GoogleSignInClient mGoogleSignInClient;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +67,35 @@ public class ProfileActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences(STORAGE_FILE, Context.MODE_PRIVATE);
         Authentication.Profile profile = new Gson().fromJson(sharedPref.getString("profile", ""), Authentication.Profile.class);
         populateProfile(profile);
+
+        ImageButton backBtn = findViewById(R.id.backButton);
+        backBtn.setOnClickListener(v -> {
+            this.finish();
+        });
+
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+
+        ImageButton signOut = findViewById(R.id.logoutIcon);
+        signOut.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            mGoogleSignInClient.signOut().addOnCompleteListener(this, task -> {
+                SharedPreferences sharedPreferences = getSharedPreferences(STORAGE_FILE, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finishAffinity();
+                startActivity(intent);
+            });
+        });
+
 
         Intent intent = new Intent(this, ServerFunctions.class);
         intent.putExtra("request", "domains");
@@ -87,8 +122,8 @@ public class ProfileActivity extends AppCompatActivity {
         NonScrollListView educationListView = findViewById(R.id.educationListView);
 
         // Creating their adapters
-        EducationListAdapter educationListAdapter = new EducationListAdapter(getApplicationContext(), R.layout.profileinfocards, profile.education);
-        ExperienceListAdapter experienceListAdapter = new ExperienceListAdapter(getApplicationContext(), R.layout.profileinfocards, profile.experience);
+        EducationListAdapter educationListAdapter = new EducationListAdapter(this, R.layout.profileinfocards, profile.education);
+        ExperienceListAdapter experienceListAdapter = new ExperienceListAdapter(this, R.layout.profileinfocards, profile.experience);
 
         // Setting their adapters
         experienceListView.setAdapter(experienceListAdapter);
@@ -222,7 +257,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
-                new DatePickerDialog(getApplicationContext(), startDate, startCalendar
+                new DatePickerDialog(dialog.getContext(), startDate, startCalendar
                         .get(Calendar.YEAR), startCalendar.get(Calendar.MONTH),
                         startCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -251,7 +286,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getApplicationContext(), endDate, endCalendar
+                DatePickerDialog datePickerDialog = new DatePickerDialog(dialog.getContext(), endDate, endCalendar
                         .get(Calendar.YEAR), endCalendar.get(Calendar.MONTH),
                         endCalendar.get(Calendar.DAY_OF_MONTH));
                 datePickerDialog.getDatePicker().setMinDate(startCalendar.getTimeInMillis());
@@ -279,7 +314,7 @@ public class ProfileActivity extends AppCompatActivity {
             list.add(domainList[i].toString());
         }
         list.add("Other");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(),
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(dialog.getContext(),
                 android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         domainSpinner.setAdapter(dataAdapter);

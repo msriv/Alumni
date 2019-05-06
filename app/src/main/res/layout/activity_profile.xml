@@ -6,6 +6,59 @@
     android:orientation="vertical"
     tools:context=".activities.ProfileActivity">
 
+    <android.support.v7.widget.Toolbar
+        tools:context=".activities.TopToolbar"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorActionBar"
+        android:elevation="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="45"
+                android:background="@null"
+                android:focusable="false"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_arrow_back_red_24dp" />
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="13"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="myProfile"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="25sp" />
+
+
+            <ImageButton
+                android:id="@+id/logoutIcon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="40"
+                android:background="@null"
+                android:focusable="false"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_sign_out_alt" />
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

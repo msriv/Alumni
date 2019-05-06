@@ -17,13 +17,11 @@ import com.squareup.picasso.Picasso;
 public class WallPostAdapter extends RecyclerView.Adapter {
 
     WallPosts[] posts;
-    int parentWidth;
 
     public static final String TAG = "WallPostAdapter";
 
-    public WallPostAdapter(WallPosts[] list, int parentWidth) {
+    public WallPostAdapter(WallPosts[] list) {
         this.posts = list;
-        this.parentWidth = parentWidth;
     }
 
     @NonNull

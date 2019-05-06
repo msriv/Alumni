@@ -12,12 +12,16 @@ import com.avantika.alumni.parameters.WallPosts;
 
 import org.json.JSONObject;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface EndPoints {
@@ -31,7 +35,7 @@ public interface EndPoints {
     Call<News[]> getNews();
 
     @GET("Alumni/actions/directory.php")
-    Call<Directory> getDirectory();
+    Call<Directory[]> getDirectory();
 
     @GET("Alumni/actions/assoc_projects.php")
     Call<Assoc_Projects[]> getAssocProjects();
@@ -61,6 +65,11 @@ public interface EndPoints {
             @Field("domainId") String Domain_ID
     );
 
+    @Multipart
     @POST("Alumni/actions/saveWallPosts.php")
-    Call<WallPosts> savePosts(@Body WallPosts post);
+    Call<ResponseBody> saveWallPost(
+            @Part MultipartBody.Part image,
+            @Part("content") RequestBody content,
+            @Part("submit") RequestBody submit,
+            @Part("email") RequestBody email);
 }
